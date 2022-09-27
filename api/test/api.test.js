@@ -24,8 +24,18 @@ describe(`/GET ${baseUri}`, () => {
       .get(`${baseUri}?fileName=test9.csv`)
       .end((err, res) => {
         res.should.have.status(200);
+        res.body.should.be.a('object');
+        chai.expect(res.body).to.have.all.keys('file', 'lines');
+        done();
+      });
+  });
+
+  it('it should GET all the files names as array', (done) => {
+    chai.request(server)
+      .get(baseUri)
+      .end((err, res) => {
+        res.should.have.status(200);
         res.body.should.be.a('array');
-        chai.expect(res.body[0]).to.have.all.keys('file', 'lines');
         done();
       });
   });
