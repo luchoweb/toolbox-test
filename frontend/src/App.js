@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { loadFiles } from './actions/filesActions';
+import { loadFiles } from './redux/actions/filesActions';
 
 import { TableComponent } from './components/Table';
 
