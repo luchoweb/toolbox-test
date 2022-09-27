@@ -2,7 +2,7 @@
 
 ---
 
-##### Prerequisites
+#### Prerequisites
 - Install [Node.js 14+](https://nodejs.org/es/download/)
 - Install [GIT](https://git-scm.com/downloads) (optional)
 
@@ -10,7 +10,7 @@
 
 ---
 
-##### API - Node
+#### API - Node
 
 1. Move to ```/api``` folder and run ```npm install```
 2. To start the API server, please run ```npm start```
@@ -18,7 +18,7 @@
 
 ---
 
-##### Front - React
+#### Front - React
 
 1. Move to ```/front``` folder en run ```npm install```
 2. To start the react app, please run ```npm start```
