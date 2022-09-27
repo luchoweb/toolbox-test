@@ -17,7 +17,9 @@ const getAllFiles = async (req, res) => {
   if ( req.query?.fileName ) {
     // Get each file formated
     const response = await getFileFormatted(req.query.fileName);
-    res.send(response);
+    res.status(response ? 200 : 404).send(
+      response || { error: `File doesn't exist` }
+    );
   } else {
     // Getting all files names
     const getFilesName = await fetch(`${externalApiUri}/secret/files`, externalApiOptions);
