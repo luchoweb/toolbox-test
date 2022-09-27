@@ -6,6 +6,7 @@ const baseUri = '/files/data';
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// API Route
 const FilesController = require('./controllers/files.controller');
 app.get(baseUri, FilesController.getAllFiles);
 
