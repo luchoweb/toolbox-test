@@ -11,20 +11,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const API_URI = 'http://localhost:5000/files/data';
-        const data = await fetch(API_URI);
-        const dataJson = await data.json();
-        dispatch(loadFiles(dataJson));
-      } catch (error) {
-        dispatch(
-          loadFiles(null)
-        );
-      }
-    }
-
-    fetchData();
+    dispatch(loadFiles());
   });
   
   return (
