@@ -1,60 +1,33 @@
-import { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import './App.css';
+import { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { loadFiles } from './actions/filesActions';
+
+import { TableComponent } from './components/Table';
 
 function App() {
-  const [fileData, setFileData] = useState();
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch('http://localhost:5000/files/data');
+        const API_URI = 'http://localhost:5000/files/data';
+        const data = await fetch(API_URI);
         const dataJson = await data.json();
-        console.log(dataJson);
+        dispatch(loadFiles(dataJson));
       } catch (error) {
-        console.error(error);
+        dispatch(
+          loadFiles(null)
+        );
       }
     }
 
     fetchData();
-  }, []);
+  });
   
   return (
     <div className="container mt-3">
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>File Name</th>
-            <th>Text</th>
-            <th>Number</th>
-            <th>Hex</th>
-          </tr>
-        </thead>
-        <tbody>
-          {!loading ? 
-            fileData.length ? (
-              fileData.map(item => (
-                <tr key={`name-${item.file}`}>
-                  <td>{ item.file }</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4}>
-                  No data to show. Please refresh the page.
-                </td>
-              </tr>
-            )
-          : (
-            <tr>
-              <td colSpan={4}>
-                Loading data, please wait...
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+      <TableComponent />
     </div>
   );
 }
