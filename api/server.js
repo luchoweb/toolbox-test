@@ -1,14 +1,21 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const baseUri = '/files/data';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // API Route
-const FilesController = require('./controllers/files.controller');
-app.get(baseUri, FilesController.getAllFiles);
+const fileRoutes = require('./routes/files.routes');
+app.use(`/files`, fileRoutes);
+
+// 404
+app.get('*', (req, res) => {
+  res.status(404).send({
+    statusCode: 404,
+    statusMessage: `The route doesn't exist!`
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
