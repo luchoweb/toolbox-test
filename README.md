@@ -1,8 +1,8 @@
-### Toolbox Full-Stack JS Challenge
+## Toolbox Full-Stack JS Challenge
 
 ---
 
-#### Prerequisites
+### Prerequisites
 - Install [Node.js 14+](https://nodejs.org/es/download/)
 - Install [GIT](https://git-scm.com/downloads) (optional)
 
@@ -10,19 +10,19 @@
 
 ---
 
-#### API - Node
+### API - Node
 
 1. Move to ```/api``` folder and please run ```npm install```
 2. To start the API server, please run ```npm start```
-3. I built some test cases, please run ```npm test```
+3. I added some tests, please run ```npm test```
 
 ---
 
-#### Front - React
+### Front - React
 
 1. Move to ```/frontend``` folder and run ```npm install```
 2. To start the React app, please run ```npm start```
-3. Unit tests are coming soon...
+3. I added some tests, please run ```npm test```
 
 ---
 
