@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import Table from 'react-bootstrap/Table';
 
 export const TableComponent = () => {
+  // Get files from state
   const fileData = useSelector(state => state.filesReducer.files);
+
+  // Build the <tr> with the data or empty
   const tableData = fileData?.length ? fileData?.map(item => (
     item.lines.map((line, index) => (
       <tr
@@ -25,11 +28,17 @@ export const TableComponent = () => {
     </tr>
   );
 
+  // errorLoading show an error message if API connection fails
   const [errorLoading, setErrorLoading] = useState(false);
+
+  // isLoading show a loading message when data is fetching from API
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // fileData === null -> show an API error message
     if ( !fileData ) setErrorLoading(true);
+
+    // fileData has items -> hide loading message
     if ( fileData?.length ) setIsLoading(false);
   }, [fileData]);
 

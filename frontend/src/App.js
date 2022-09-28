@@ -11,9 +11,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Initial data load
     dispatch(loadFiles());
   });
-  
+
   return (
     <>
       <HeaderComponent />

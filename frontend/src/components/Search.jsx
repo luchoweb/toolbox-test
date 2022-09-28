@@ -6,9 +6,11 @@ import { loadFiles } from '../redux/actions/filesActions';
 export const SearchComponent = () => {
   const dispatch = useDispatch();
 
+  // input value in the component state
   const [inputFileName, setInputFileName] = useState('');
 
   const handleSearch = () => {
+    // if input search value isn't empty -> search file
     if ( inputFileName ) dispatch(loadFiles(inputFileName));
   }
 
