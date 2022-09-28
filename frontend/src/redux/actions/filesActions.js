@@ -1,4 +1,4 @@
-import { getFiles } from '../../api';
+import { getFiles } from '../../utils/api';
 
 export const LOAD_DATA = 'LOAD_DATA';
 

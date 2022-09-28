@@ -7,7 +7,10 @@ export const TableComponent = () => {
   const fileData = useSelector(state => state.filesReducer.files);
   const tableData = fileData?.length ? fileData?.map(item => (
     item.lines.map((line, index) => (
-      <tr key={`f-${item.file}-${index}`}>
+      <tr
+        key={`f-${item.file}-${index}`}
+        data-testid={`table-data`}
+      >
         <td className='text-break'>{ item.file }</td>
         <td className='text-break'>{ line.text }</td>
         <td className='text-break'>{ line.number }</td>
@@ -15,7 +18,7 @@ export const TableComponent = () => {
       </tr>
     ))
   )) : (
-    <tr>
+    <tr data-testid="table-nodata">
       <td colSpan={4}>
         No data to show.
       </td>
@@ -27,7 +30,7 @@ export const TableComponent = () => {
 
   useEffect(() => {
     if ( !fileData ) setErrorLoading(true);
-    if ( fileData.length ) setIsLoading(false);
+    if ( fileData?.length ) setIsLoading(false);
   }, [fileData]);
 
   return (
@@ -41,15 +44,15 @@ export const TableComponent = () => {
         </tr>
       </thead>
       <tbody>
-        { isLoading ? (
-          <tr>
+        { isLoading && !errorLoading ? (
+          <tr data-testid="table-loading">
             <td colSpan={4}>
               Loading data, please wait...
             </td>
           </tr>
         ) : (
           errorLoading ? (
-            <tr>
+            <tr data-testid="table-error">
               <td colSpan={4}>
                 ERROR. Check the API service and refresh the page.
               </td>
