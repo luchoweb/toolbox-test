@@ -14,7 +14,7 @@
 
 1. Move to ```/api``` folder and run ```npm install```
 2. To start the API server, please run ```npm start```
-3. I add some test cases, please run ```npm test```
+3. I built some test cases, please run ```npm test```
 
 ---
 
