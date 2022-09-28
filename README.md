@@ -1,7 +1,5 @@
 ## Toolbox Full-Stack JS Challenge
 
----
-
 ### Prerequisites
 - Install [Node.js 14+](https://nodejs.org/es/download/)
 - Install [GIT](https://git-scm.com/downloads) (optional)
