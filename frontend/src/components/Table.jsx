@@ -5,10 +5,29 @@ import Table from 'react-bootstrap/Table';
 
 export const TableComponent = () => {
   const fileData = useSelector(state => state.filesReducer.files);
+  const tableData = fileData?.length ? fileData?.map(item => (
+    item.lines.map((line, index) => (
+      <tr key={`f-${item.file}-${index}`}>
+        <td className='text-break'>{ item.file }</td>
+        <td className='text-break'>{ line.text }</td>
+        <td className='text-break'>{ line.number }</td>
+        <td className='text-break'>{ line.hex }</td>
+      </tr>
+    ))
+  )) : (
+    <tr>
+      <td colSpan={4}>
+        No data to show.
+      </td>
+    </tr>
+  );
+
   const [errorLoading, setErrorLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if ( !fileData ) setErrorLoading(true);
+    if ( fileData.length ) setIsLoading(false);
   }, [fileData]);
 
   return (
@@ -22,23 +41,22 @@ export const TableComponent = () => {
         </tr>
       </thead>
       <tbody>
-        {fileData?.length ? (
-          fileData.map(item => (
-            item.lines.map((line, index) => (
-              <tr key={`f-${item.file}-${index}`}>
-                <td className='text-break'>{ item.file }</td>
-                <td className='text-break'>{ line.text }</td>
-                <td className='text-break'>{ line.number }</td>
-                <td className='text-break'>{ line.hex }</td>
-              </tr>
-            ))
-          ))
-        ) : (
+        { isLoading ? (
           <tr>
             <td colSpan={4}>
-              { !errorLoading ? 'Loading data, please wait...' : 'An error has occurred, please refresh the page.'}
+              Loading data, please wait...
             </td>
           </tr>
+        ) : (
+          errorLoading ? (
+            <tr>
+              <td colSpan={4}>
+                ERROR. Check the API service and refresh the page.
+              </td>
+            </tr>
+          ) : (
+            tableData
+          )
         )}
       </tbody>
     </Table>

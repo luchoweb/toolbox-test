@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { loadFiles } from '../redux/actions/filesActions';
@@ -5,29 +6,32 @@ import { loadFiles } from '../redux/actions/filesActions';
 export const SearchComponent = () => {
   const dispatch = useDispatch();
 
-  const handleSearch = async () => {
-    try {
-      const fileName = '';
-      const API_URI = `http://localhost:5000/files/data?=fileName=${fileName}`;
-      const data = await fetch(API_URI);
-      const dataJson = await data.json();
-      dispatch(loadFiles(dataJson));
-    } catch (error) {
-      dispatch(
-        loadFiles(null)
-      );
-    }
+  const [inputFileName, setInputFileName] = useState('');
+
+  const handleSearch = () => {
+    if ( inputFileName ) dispatch(loadFiles(inputFileName));
   }
 
   return (
     <div className="form-group">
-      <input type="text" className="form-control" placeholder='File name' />
-      <button
-        className="btn btn-dark"
-        onClick={() => handleSearch}
-      >
-        Search
-      </button>
+      <label htmlFor="" className='text-light'>Enter a file name</label>
+
+      <div className='d-flex align-items-center gap-2'>
+        <input
+          type="text"
+          className="form-control"
+          placeholder='test9.csv'
+          value={inputFileName}
+          onChange={(e) => setInputFileName(e.target.value)}
+        />
+
+        <button
+          className="btn btn-dark"
+          onClick={() => handleSearch()}
+        >
+          Search
+        </button>
+      </div>
     </div>
   )
 }
