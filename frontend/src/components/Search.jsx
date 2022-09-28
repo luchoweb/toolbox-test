@@ -14,20 +14,25 @@ export const SearchComponent = () => {
 
   return (
     <div className="form-group">
-      <label htmlFor="" className='text-light'>Enter a file name</label>
+      <label htmlFor="search" className="text-light" data-testid="search-label">
+        Enter a file name
+      </label>
 
-      <div className='d-flex align-items-center gap-2'>
+      <div className="d-flex align-items-center gap-2">
         <input
+          id="search"
           type="text"
           className="form-control"
           placeholder='test9.csv'
           value={inputFileName}
           onChange={(e) => setInputFileName(e.target.value)}
+          data-testid="search-input"
         />
 
         <button
           className="btn btn-dark"
           onClick={() => handleSearch()}
+          data-testid="search-button"
         >
           Search
         </button>
