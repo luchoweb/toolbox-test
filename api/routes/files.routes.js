@@ -5,10 +5,10 @@ const router = express.Router();
 
 const FilesController = require('../controllers/files.controller');
 
-// Get all files and content
+// Get all files and their content
 router.get('/data', FilesController.getAllFiles);
 
-// Get all files and content
+// Get all file names
 router.get('/list', FilesController.getAllFilesNames);
 
 module.exports = router;
