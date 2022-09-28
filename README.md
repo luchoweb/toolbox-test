@@ -18,7 +18,7 @@
 
 ### Front - React
 
-1. Move to ```/frontend``` folder and run ```npm install```
+1. Move to ```/frontend``` folder and please run ```npm install```
 2. To start the React app, please run ```npm start```
 3. I added some tests, please run ```npm test```
 

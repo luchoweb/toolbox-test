@@ -18,7 +18,6 @@ const getAllFiles = async (req, res) => {
   if ( req.query?.fileName ) {
     // Get the file formatted
     const response = await getFileFormatted(req.query.fileName);
-    console.log(response)
 
     // Send to endpoint the file or 404 not found error
     res.status(response ? 200 : 404).send(
